@@ -82,7 +82,7 @@ header{
   width: 100%;
   padding: 8px;
   border: none;
-  border-bottom: 5px solid dodgerblue;
+  border-bottom: 5px solid skyblue;
   background-color: transparent;
   color: snow;
   font-weight: bold;
@@ -99,7 +99,7 @@ header{
 .button-save{
   width: 100%;
   padding: 8px 12px;
-  background-color: dodgerblue;
+  background-color: skyblue;
   border: 0;
   color: white;
   font-size: 16px;
@@ -171,4 +171,8 @@ header{
   font-weight: bold;
   background-color: #111217;
 }
+.calendar-today{
+  border: 1px solid skyblue;
+}
+
 
