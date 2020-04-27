@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from "react";
-import Form from "./Form";
 import DATE_HELPER from "../../utils/dateHelper";
 import CalendarHeader from "./CalendarHeader";
 import DayName from "./DayName";
@@ -36,34 +35,33 @@ export default ()=>{
 		setStartDay(getStartDayOfMonth(date));
 	}, [date]);
 
+
 	return(
-		<>
-			<Form isVisible={false}/>
-			<div className="calendar">
-				<CalendarHeader
-					prev={prevMonth}
-					next={nextMonth}
-					title={`${DATE_HELPER.MONTHS[month]} ${year}`}
-				/>
-				<div className="calendar-body">
-					{DATE_HELPER.DAYS_OF_THE_WEEK.map(d => (
-						<DayName name={d} key={d}/>
-					))}
-					{Array(days[month] + (startDay - 1))
-						.fill(null)
-						.map((_, index) => {
-							const d = index - (startDay - 2);
-							return (
-								<Day
-									key={index}
-									isToday={d === today.getDate()}
-									handleClick={() => setDate(new Date(year, month, d))}
-									date={d > 0 ? d : ''}
-								/>
-							);
-						})}
-				</div>
+		<div className="calendar">
+			<CalendarHeader
+				prev={prevMonth}
+				next={nextMonth}
+				title={`${DATE_HELPER.MONTHS[month]} ${year}`}
+			/>
+			<div className="calendar-body">
+				{DATE_HELPER.DAYS_OF_THE_WEEK.map(d => (
+					<DayName name={d} key={d}/>
+				))}
+				{Array(days[month] + (startDay - 1))
+					.fill(null)
+					.map((_, idx) => {
+						const d = idx - (startDay - 2);
+						const key = `${DATE_HELPER.MONTHS[month]}${year}${d}`;
+						return (
+							<Day
+								key={key}
+								keyID={key}
+								isToday={d === today.getDate()}
+								date={d > 0 ? d : ''}
+							/>
+						);
+					})}
 			</div>
-		</>
+		</div>
 	)
 }
